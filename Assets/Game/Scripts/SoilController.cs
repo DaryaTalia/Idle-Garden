@@ -14,9 +14,8 @@ public class SoilController : MonoBehaviour, IPointerDownHandler
 
     public Sprite[] sprites;
 
-    public int budTime = 15;
-    public int youngTime = 35;
-    public int matureTime = 3;
+    public int budTime = 10;
+    public int youngTime = 25;
 
     float pulseMin = .7f;
     float pulseMax = .75f;
@@ -79,15 +78,8 @@ public class SoilController : MonoBehaviour, IPointerDownHandler
         case SoilState.mature:
                 {
                     UpdateFlowerSprite();
-                    yield return new WaitForSeconds(matureTime);
                     Debug.Log("Mature Grown");
                     UpdateFlowerCount();
-
-                    while (condition == SoilState.mature)
-                    {
-                        GameManager.instance.IncrementSeeds();
-                        yield return new WaitForSeconds(matureTime);
-                    }
                     break;
                 }
 
